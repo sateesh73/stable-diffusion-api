@@ -4,6 +4,8 @@ from typing import List, Optional, Union
 from pydantic import BaseModel
 from fastapi.responses import StreamingResponse
 import io
+import os
+import uvicorn
 
 app = FastAPI()
 model_id = "emilianJR/epiCRealism"
@@ -32,3 +34,7 @@ async def getApi(item: Item):
     image.save(memory_stream, format="PNG")
     memory_stream.seek(0)
     return StreamingResponse(memory_stream, media_type="image/png")
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Get the port from the environment variable
+    uvicorn.run(app, host="0.0.0.0", port=port)  # Use the port in uvicorn
