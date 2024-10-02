@@ -6,8 +6,18 @@ from fastapi.responses import StreamingResponse
 import io
 import os
 import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this to specify allowed origins, if needed
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 model_id = "emilianJR/epiCRealism"
 device = "cpu"
 access_token = "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"
