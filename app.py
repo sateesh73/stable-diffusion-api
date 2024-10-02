@@ -7,7 +7,7 @@ import io
 
 app = FastAPI()
 model_id = "emilianJR/epiCRealism"
-device = "cuda" if torch.cuda.is_available() else "cpu"
+device = "cpu"
 access_token = "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"
 
 class Item(BaseModel):
